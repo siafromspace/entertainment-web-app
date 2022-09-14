@@ -13,10 +13,10 @@ const Navbar = () => {
                 <NavLink to="/">
                     <img src={NavHome} alt="home" />
                 </NavLink>
-                <NavLink to="/">
+                <NavLink to="/movies">
                     <img src={NavMovies} alt="movies" />
                 </NavLink>
-                <NavLink to="/">
+                <NavLink to="/tvseries">
                     <img src={NavTvSeries} alt="tv shows" />
                 </NavLink>
             </div>

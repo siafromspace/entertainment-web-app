@@ -1,12 +1,16 @@
 import Navbar from "../../components/Navbar";
-import { Outlet } from "react-router-dom";
+import Search from "../../components/Search";
+import Recommended from "./Recommended";
+import Trending from "./Trending";
 
 const Home = () => {
     return (
         <section>
             <Navbar />
-            <div>
-                <Outlet />
+            <div className="container">
+                <Search />
+                <Trending />
+                <Recommended />
             </div>
         </section>
     );
