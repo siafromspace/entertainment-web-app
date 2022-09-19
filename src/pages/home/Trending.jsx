@@ -1,9 +1,11 @@
 import Movie from "../../assets/icon-category-movie.svg"
 import TV from "../../assets/icon-category-tv.svg"
 import BookmarkEmpty from "../../assets/icon-bookmark-empty.svg"
+import BookmarkFull from "../../assets/icon-bookmark-full.svg"
 import Play from "../../assets/icon-play.svg"
 import { useContext } from "react"
 import { MovieContext } from "../../context/MovieContext"
+import { BookmarkContext } from "../../context/BookmarkContext"
 
 const Trending = () => {
     const { trending } = useContext(MovieContext)
@@ -27,14 +29,17 @@ export default Trending;
 
 const Card = ({ image, movieTitle, showTitle, releaseDate, mediaType, airDate }) => {
     const { IMAGE_BASE_URL } = useContext(MovieContext)
+    const { addToBookmark, isBookmarked, removeFromBookmark } = useContext(BookmarkContext)
     const type = mediaType === "movie" ? "Movie" : "TV Series"
     const imageIcon = mediaType === "movie" ? Movie : TV
+
+    const bookmarkImg = isBookmarked ? BookmarkFull : BookmarkEmpty
     return (
         <div className="card-container">
             <div className="card-img">
                 <img src={`${IMAGE_BASE_URL}${image}`} alt="" className="film-img" />
                 <div className="bookmark-icon">
-                    <img src={BookmarkEmpty} alt="" />
+                    <img src={BookmarkEmpty} alt="" onClick={isBookmarked ? removeFromBookmark : addToBookmark} />
                 </div>
                 <div className="overlay">
                     <div className="play-container">

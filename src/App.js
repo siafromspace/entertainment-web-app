@@ -5,18 +5,24 @@ import Signup from "./pages/auth/Signup";
 import Movie from "./pages/movie/Movie";
 import TvSeries from "./pages/tv-series/TvSeries";
 import MovieContextProvider from "./context/MovieContext";
+import AuthContextProvider from "./context/AuthContext";
+import BookmarkContextProvider from "./context/BookmarkContext";
 
 function App() {
   return (
     <BrowserRouter>
       <MovieContextProvider>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Movie />} />
-          <Route path="/tvseries" element={<TvSeries />} />
-        </Routes>
+        <AuthContextProvider>
+          <BookmarkContextProvider>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/movies" element={<Movie />} />
+              <Route path="/tvseries" element={<TvSeries />} />
+            </Routes>
+          </BookmarkContextProvider>
+        </AuthContextProvider>
       </MovieContextProvider>
     </BrowserRouter >
   );

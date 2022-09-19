@@ -143,6 +143,15 @@ nav .nav-links {
   flex-direction: column;
   gap: 1.5rem;
 }
+.active-link > * {
+  fill: #FFF;
+}
+.not-active > * {
+  fill: #5A698F;
+}
+.not-active > *:hover {
+  fill: var(--clr-primary-1);
+}
 
 /* AUTH */
 .form {

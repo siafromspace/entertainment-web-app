@@ -15,7 +15,7 @@ const Movie = () => {
                     <h3 className="heading">Movies</h3>
                     <div className="card-wrapper">
                         {movies.current && movies.current.map(data => {
-                            return <Card key={data.id} image={data.poster_path} title={data.title} releaseDate={data.release_date} mediaType={`movie`} />
+                            return <Card key={data.id} id={data.id} image={data.poster_path} title={data.title} releaseDate={data.release_date} mediaType={`movie`} />
                         })}
                     </div>
                 </div>

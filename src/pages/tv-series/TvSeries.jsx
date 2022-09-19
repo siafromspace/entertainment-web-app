@@ -15,7 +15,7 @@ const TvSeries = () => {
                     <h3 className="heading">TV Series</h3>
                     <div className="card-wrapper">
                         {tvSeries.current && tvSeries.current.map(data => {
-                            return <Card key={data.id} image={data.poster_path} title={data.name} releaseDate={data.first_air_date} mediaType={`TV Series`} />
+                            return <Card key={data.id} id={data.id} image={data.poster_path} title={data.name} releaseDate={data.first_air_date} mediaType={`TV Series`} isBookmarked={data.isBookmarked} />
                         })}
                     </div>
                 </div>

@@ -7,6 +7,8 @@ const MovieContextProvider = (props) => {
     const tvSeries = useRef([])
     const trending = useRef([])
     const recommended = useRef([])
+    const data = useRef([])
+    const [bookmarks, setBookmarks] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -56,11 +58,16 @@ const MovieContextProvider = (props) => {
     useEffect(() => {
         const getData = async (searchParams) => {
             await fetchData("discover/tv/", searchParams).then(data => {
-                tvSeries.current = data.results
+                tvSeries.current = data.results.map(d => {
+                    return {
+                        ...d,
+                        isBookmarked: false
+                    }
+                })
                 setIsLoading(false)
                 setError(null)
             })
-            // console.log(tvSeries.current)
+            console.log(tvSeries.current)
         }
         getData()
     }, [])
@@ -72,13 +79,17 @@ const MovieContextProvider = (props) => {
                 setIsLoading(false)
                 setError(null)
             })
-            console.log(recommended.current)
+            // console.log(recommended.current)
         }
         getData()
     }, [])
 
+
+    data.current = [...tvSeries.current, ...movies.current, ...trending.current, ...recommended.current]
+
+
     return (
-        <MovieContext.Provider value={{ movies, tvSeries, trending, recommended, isLoading, error, IMAGE_BASE_URL }}>
+        <MovieContext.Provider value={{ movies, tvSeries, trending, recommended, isLoading, error, IMAGE_BASE_URL, bookmarks, setBookmarks, data }}>
             {props.children}
         </MovieContext.Provider>
     );
